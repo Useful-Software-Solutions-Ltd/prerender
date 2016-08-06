@@ -2,6 +2,7 @@
 var prerender = require('./lib');
 
 var server = prerender({
+    port: process.env.port,
     workers: process.env.PRERENDER_NUM_WORKERS,
     iterations: process.env.PRERENDER_NUM_ITERATIONS
 });
@@ -9,8 +10,8 @@ var server = prerender({
 
 server.use(prerender.sendPrerenderHeader());
 // server.use(prerender.basicAuth());
-// server.use(prerender.whitelist());
-server.use(prerender.blacklist());
+server.use(prerender.whitelist());
+//server.use(prerender.blacklist());
 // server.use(prerender.logger());
 server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
